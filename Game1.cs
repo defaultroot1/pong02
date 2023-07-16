@@ -11,6 +11,7 @@ namespace pong02
 
         private Bat playerBat;
         private Bat cpuBat;
+        private Ball _ball;
 
         public Game1()
         {
@@ -26,8 +27,10 @@ namespace pong02
             _graphics.ApplyChanges();
 
             ScreenHelper.Initialise(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+
             playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
             cpuBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.95f);
+            _ball = new Ball(Content);
 
             base.Initialize();
         }
@@ -46,6 +49,7 @@ namespace pong02
 
             playerBat.Update();
             cpuBat.Update();
+            _ball.Update();
 
             base.Update(gameTime);
         }
@@ -58,6 +62,7 @@ namespace pong02
 
             playerBat.Draw(_spriteBatch);
             cpuBat.Draw(_spriteBatch);
+            _ball.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
