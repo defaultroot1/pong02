@@ -9,6 +9,8 @@ namespace pong02
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private AudioManager _audioManager;
+
         private Texture2D _background;
 
         private Bat _playerBat;
@@ -30,9 +32,10 @@ namespace pong02
             _graphics.PreferredBackBufferHeight = 480;
             _graphics.ApplyChanges();
 
+            _audioManager = new AudioManager(Content);
             ScreenHelper.Initialise(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
-            _ball = new Ball(Content);
+            _ball = new Ball(Content, _audioManager);
             _playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
             _cpuBat = new CpuBat(Content, _graphics.PreferredBackBufferWidth * 0.95f, _ball);
 
@@ -44,6 +47,8 @@ namespace pong02
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            _audioManager.PlaySong();
 
             _background = Content.Load<Texture2D>("Sprites/pongBackground");
         }

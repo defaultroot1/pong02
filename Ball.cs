@@ -8,6 +8,7 @@ namespace pong02
     internal class Ball
     {
         private Texture2D _texture;
+        private AudioManager _audioManager;
         private Vector2 _position;
         private Vector2 _velocity = new Vector2(1, 1);
 
@@ -17,9 +18,10 @@ namespace pong02
         private const float ballIncreaseSpeed = 0.5f; // How much the ball speeds up with each paddle hit
         private float _speed = initialBallSpeed;
 
-        public Ball(ContentManager contentManager)
+        public Ball(ContentManager contentManager, AudioManager audioManager)
         {
             _texture = contentManager.Load<Texture2D>("Sprites/pongBall");
+            _audioManager = audioManager;
             _position = new Vector2(
                 (ScreenHelper.ScreenWidth / 2) + _texture.Width / 2, 
                 (ScreenHelper.ScreenHeight / 2) + _texture.Height / 2);
@@ -36,22 +38,26 @@ namespace pong02
             {
                 _velocity.X *= -1;
                 _speed += ballIncreaseSpeed;
+                _audioManager.PlayClickSound();
             }
 
             if(_position.Y <= 0 || _position.Y >= ScreenHelper.ScreenHeight - _texture.Height)
             {
                 _velocity.Y *= -1;
+                _audioManager.PlayClickSound();
             }
 
             if(_position.X < 0)
             {
                 score.player2Score += 1;
+                _audioManager.PlayGoalSound();
                 Reset();
             }
 
             if(_position.X > ScreenHelper.ScreenWidth - _texture.Width)
             {
                 score.player1Score += 1;
+                _audioManager.PlayGoalSound();
                 Reset();
             }
         }

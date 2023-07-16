@@ -13,6 +13,24 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/bgSong.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/bgSong.mp3
+
+#begin Audio/click.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/click.wav
+
+#begin Audio/powerUp2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/powerUp2.wav
+
 #begin Fonts/scoreFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
