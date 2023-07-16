@@ -9,6 +9,8 @@ namespace pong02
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D _background;
+
         private Bat _playerBat;
         private CpuBat _cpuBat;
         private Ball _ball;
@@ -43,7 +45,7 @@ namespace pong02
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _background = Content.Load<Texture2D>("Sprites/pongBackground");
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,6 +65,8 @@ namespace pong02
             GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
+
+            _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
 
             _playerBat.Draw(_spriteBatch);
             _cpuBat.Draw(_spriteBatch);
