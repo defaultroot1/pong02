@@ -7,9 +7,9 @@ namespace pong02
 {
     internal class Bat
     {
-        private Texture2D _texture;
-        private Vector2 _position;
-        private const float _speed = 5f;
+        protected Texture2D _texture;
+        protected Vector2 _position;
+        protected const float _speed = 5f;
 
         public Bat(ContentManager contentManager, float initialXPosition)
         {
@@ -19,7 +19,7 @@ namespace pong02
             _position = new Vector2(initialXPosition, (ScreenHelper.ScreenHeight / 2) - _texture.Height / 2);
         }
 
-        public void Update()
+        public virtual void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
 

@@ -10,7 +10,7 @@ namespace pong02
         private SpriteBatch _spriteBatch;
 
         private Bat _playerBat;
-        private Bat _cpuBat;
+        private CpuBat _cpuBat;
         private Ball _ball;
 
         private Score _score;
@@ -30,9 +30,9 @@ namespace pong02
 
             ScreenHelper.Initialise(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
-            _playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
-            _cpuBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.95f);
             _ball = new Ball(Content);
+            _playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
+            _cpuBat = new CpuBat(Content, _graphics.PreferredBackBufferWidth * 0.95f, _ball);
 
             _score = new Score(Content);
 
