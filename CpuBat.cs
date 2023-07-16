@@ -22,7 +22,16 @@ namespace pong02
         {
             // Override the Bat Update method to have CPU control rather than keyboard control
 
-            _position.Y *= _ball.Position.Y;
+           //_position.Y = _ball.Position.Y;
+
+            if(_ball.Position.Y >= _position.Y)
+            {
+                _position.Y += _speed;
+            }
+            else
+            {
+                _position.Y -= _speed;
+            }
 
            _position.Y = MathHelper.Clamp(_position.Y, 0, ScreenHelper.ScreenHeight - _texture.Height);
         }
