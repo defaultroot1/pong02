@@ -9,6 +9,9 @@ namespace pong02
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Bat playerBat;
+        private Bat cpuBat;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -21,6 +24,10 @@ namespace pong02
             _graphics.PreferredBackBufferWidth = 640;
             _graphics.PreferredBackBufferHeight = 480;
             _graphics.ApplyChanges();
+
+            ScreenHelper.Initialise(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
+            cpuBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.95f);
 
             base.Initialize();
         }
@@ -37,16 +44,22 @@ namespace pong02
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            playerBat.Update();
+            cpuBat.Update();
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            playerBat.Draw(_spriteBatch);
+            cpuBat.Draw(_spriteBatch);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
