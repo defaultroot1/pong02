@@ -11,6 +11,6 @@ To add:
 <li><s>Randomised starting direction</s></li>
 <li><s>Improved background</s></li>
 <li>Win/Game state</li>
-<li>Audio</li>
+<li><s>Audio</s></li>
 </ul>
 
