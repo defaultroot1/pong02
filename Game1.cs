@@ -9,9 +9,11 @@ namespace pong02
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Bat playerBat;
-        private Bat cpuBat;
+        private Bat _playerBat;
+        private Bat _cpuBat;
         private Ball _ball;
+
+        private Score _score;
 
         public Game1()
         {
@@ -28,9 +30,11 @@ namespace pong02
 
             ScreenHelper.Initialise(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
-            playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
-            cpuBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.95f);
+            _playerBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.05f);
+            _cpuBat = new Bat(Content, _graphics.PreferredBackBufferWidth * 0.95f);
             _ball = new Ball(Content);
+
+            _score = new Score(Content);
 
             base.Initialize();
         }
@@ -47,9 +51,9 @@ namespace pong02
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            playerBat.Update();
-            cpuBat.Update();
-            _ball.Update();
+            _playerBat.Update();
+            _cpuBat.Update();
+            _ball.Update(_playerBat, _cpuBat, _score);
 
             base.Update(gameTime);
         }
@@ -60,9 +64,11 @@ namespace pong02
 
             _spriteBatch.Begin();
 
-            playerBat.Draw(_spriteBatch);
-            cpuBat.Draw(_spriteBatch);
+            _playerBat.Draw(_spriteBatch);
+            _cpuBat.Draw(_spriteBatch);
             _ball.Draw(_spriteBatch);
+
+            _score.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

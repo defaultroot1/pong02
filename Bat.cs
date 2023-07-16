@@ -31,11 +31,18 @@ namespace pong02
             {
                 _position.Y += _speed;
             }
+
+           _position.Y = MathHelper.Clamp(_position.Y, 0, ScreenHelper.ScreenHeight - _texture.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, _position, Color.White);
+        }
+
+        public Rectangle GetBounds()
+        {
+            return new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
         }
 
         public int GetPaddleHeight()
