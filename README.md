@@ -12,7 +12,5 @@ To add:
 <li><s>Improved background</s></li>
 <li>Win/Game state</li>
 <li>Audio</li>
-<li>Angle change if paddle is moving during collision</li>
-<li>Angle change based on area of paddle hit...maybe</li>
 </ul>
 
